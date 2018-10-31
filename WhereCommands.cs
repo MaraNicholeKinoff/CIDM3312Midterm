@@ -23,7 +23,7 @@ namespace CIDM3312Midterm
             using (var context = new AppDbContext()) {
                 var books = context.Book.ToList();
                 var apressBooks = books.Where(b => b.Publisher == "APress");
-                foreach(Book b in books) {
+                foreach(Book b in apressBooks) {
                     Console.WriteLine(b);
                 }
             } 

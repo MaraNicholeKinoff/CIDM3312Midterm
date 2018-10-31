@@ -32,7 +32,7 @@ namespace CIDM3312Midterm
                             Pages = 776
                         },
                         new Book() {
-                            Title = " Programming Microsoft Azure Service Fabric (Developer Reference) 2nd Edition",
+                            Title = "Programming Microsoft Azure Service Fabric (Developer Reference) 2nd Edition",
                             Publisher = "Microsoft Press",
                             PublishDate = "May 25, 2018",
                             AuthorID = 2,
