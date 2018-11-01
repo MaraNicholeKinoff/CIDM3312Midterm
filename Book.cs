@@ -12,7 +12,7 @@ namespace CIDM3312Midterm
         public int AuthorID { get; set; }
 
         public override string ToString(){
-            return this.BookID + " - " + this.Title;
+            return this.BookID + " - " + this.Title + " published by " + this.Publisher;
         }
     }
 

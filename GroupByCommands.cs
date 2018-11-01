@@ -8,10 +8,22 @@ using System.Linq;
 
 namespace CIDM3312Midterm
 {
-    public class OrderByCommands
+    public class GroupByCommands
     {
         
         public static void Problem1() {
+            using (var context = new AppDbContext()) {
+                var books = context.Book.ToList();
+                var publisherGroups = books.GroupBy(b => b.Publisher);
+                foreach(var group in publisherGroups) {
+                    Console.WriteLine($"Publisher Group: {group.Key}");
+                    foreach(Book b in group) {
+                        Console.WriteLine(b);
+                    }
+                }
+            } 
+        }
+        public static void Problem2() {
             using (var context = new AppDbContext()) {
                 var booksAuthorsJoin = context.Book.Join(
                                                 context.Author, 
@@ -24,19 +36,14 @@ namespace CIDM3312Midterm
                                                     Pages = b.Pages,
                                                     AuthorFName = a.AuthorFName,
                                                     AuthorLName = a.AuthorLName
-                                                });
-                var orderedNameList = booksAuthorsJoin.OrderBy(a => a.AuthorLName);
-                foreach(var b in orderedNameList) {
-                    Console.WriteLine(b);
-                }
-            } 
-        }
-        public static void Problem2() {
-            using (var context = new AppDbContext()) {
-                var books = context.Book.ToList();
-                var descendingBooks = books.OrderByDescending(b => b.Title);
-                foreach(Book b in descendingBooks) {
-                    Console.WriteLine(b);
+                                                }).ToList();
+                var ordered = booksAuthorsJoin.OrderBy(a => a.AuthorLName);
+                var groupedBooks = ordered.GroupBy(b => b.Publisher);
+                foreach(var group in groupedBooks) {
+                    Console.WriteLine($"Publisher Group: {group.Key}");
+                    foreach(var b in group) {                        
+                        Console.WriteLine(b);
+                    }
                 }
             } 
         }
